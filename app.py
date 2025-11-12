@@ -2,22 +2,18 @@ import streamlit as st
 import pickle
 import numpy as np
 from datetime import datetime
-
-st.set_page_config(
-    page_title="Votre Titre",
-    page_icon="🔍",
-    layout="wide"
-)
-
-# Forcer le mode texte brut pour éviter regex bugs
 import os
-os.environ['STREAMLIT_MARKDOWN_AUTOLINK'] = 'false'
+
+# IMPORTANT : set_page_config DOIT être la PREMIÈRE commande Streamlit
 st.set_page_config(
     page_title="Chatbot IA Assurance - Maram Chebbi",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Forcer le mode texte brut pour éviter regex bugs
+os.environ['STREAMLIT_MARKDOWN_AUTOLINK'] = 'false'
 
 @st.cache_resource
 def load_chatbot_data():
@@ -96,7 +92,7 @@ st.markdown("""
 
 st.title("🤖 Chatbot IA Assurance")
 st.markdown("### Votre Assistant Intelligent pour l'Assurance")
-st.markdown("**Développé par** : Maram Chebbi | ESPRIT & IRA Le Mans")
+st.write("Développé par : Maram Chebbi | ESPRIT & IRA Le Mans")
 st.markdown("---")
 
 if not models_loaded:
@@ -327,9 +323,9 @@ with tab2:
     with col2:
         st.info(f"**À propos de {type_assurance.replace('_', ' ').title()}**\n\n{knowledge_base[type_assurance]['description']}")
         
-        st.markdown("**Facteurs de tarification :**")
+        st.write("**Facteurs de tarification :**")
         for facteur in knowledge_base[type_assurance]['facteurs']:
-            st.markdown(f"• {facteur}")
+            st.write(f"• {facteur}")
     
     if type_assurance == "assurance_vie":
         col1, col2 = st.columns(2)
@@ -439,7 +435,7 @@ with tab3:
         with col1:
             st.markdown("### 🎯 Facteurs Identifiés")
             for facteur in risque['facteurs']:
-                st.markdown(f"• {facteur}")
+                st.write(f"• {facteur}")
         
         with col2:
             st.markdown("### 💡 Recommandation")
@@ -487,7 +483,7 @@ with tab4:
                     with col1:
                         st.markdown(f"### {produit_key.replace('_', ' ').title()}")
                         st.write(knowledge_base[produit_key]['description'])
-                        st.markdown(f"**Priorité** : {priorite}")
+                        st.write(f"**Priorité** : {priorite}")
                     
                     with col2:
                         st.metric("Prime/mois", f"{prime_mensuelle:.2f}€")
@@ -496,4 +492,5 @@ with tab4:
                     st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("---")
-
+st.caption("Développé par Maram Chebbi - Data Science & Actuariat")
+st.text("Contact: chebbimaram0[at]gmail.com")
