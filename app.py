@@ -2,7 +2,16 @@ import streamlit as st
 import pickle
 import numpy as np
 from datetime import datetime
+# DÉSACTIVER L'AUTO-LINKING PROBLÉMATIQUE
+st.set_page_config(
+    page_title="Votre Titre",
+    page_icon="🔍",
+    layout="wide"
+)
 
+# Forcer le mode texte brut pour éviter regex bugs
+import os
+os.environ['STREAMLIT_MARKDOWN_AUTOLINK'] = 'false'
 st.set_page_config(
     page_title="Chatbot IA Assurance - Maram Chebbi",
     page_icon="🤖",
