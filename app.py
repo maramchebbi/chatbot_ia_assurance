@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 from datetime import datetime
-# DÉSACTIVER L'AUTO-LINKING PROBLÉMATIQUE
+
 st.set_page_config(
     page_title="Votre Titre",
     page_icon="🔍",
